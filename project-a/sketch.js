@@ -9,6 +9,7 @@ let yStartSpeed = 2;
 let xDrop, yDrop;
 
 function setup() {
+
     canvas = createCanvas(800, 500);
     canvas.parent("p5-canvas-container");
 
@@ -20,7 +21,7 @@ function setup() {
 }
 
 function draw() {
-    background(0, 15);
+    background(0, 5);
 
     //background and changes
     if (
@@ -116,7 +117,8 @@ function pressedMotion() {
         bDrop = 200;
     }
 
-    stroke(rDrop, gDrop, bDrop);
+    stroke(rDrop, gDrop, bDrop, 180);
+    strokeWeight(random(0, 2));
     noFill();
     circle(xDrop, yDrop, radDrop);
 }
@@ -346,7 +348,8 @@ function spark() {
     ) {
         let xSpark = random(0, width);
         let ySpark = random(0, height);
-        circle(xSpark, ySpark, 10);
+        strokeWeight(1);
+        circle(xSpark, ySpark, random(2, 15));
     } else {
     }
 }
