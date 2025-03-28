@@ -19,15 +19,22 @@ class YiningDancer {
   constructor(startX, startY) {
     this.x = startX;
     this.y = startY;
+    this.movement = false
     this.movement = 0
     this.movementTarget = 0
   }
   update() {
+    this.updateMovement()
+  }
+  updateMovement() {
     let remainder = frameCount % 30
     if (remainder == 0) {
+      this.movement = !this.movement
+    }
+    if (this.movement == true) {
       this.movementTarget += -15
     } else {
-      this.movementTarget += 15 / 29
+      this.movementTarget += 15
     }
 
     this.movement = lerp(this.movement, this.movementTarget, 0.35)
@@ -36,15 +43,10 @@ class YiningDancer {
 
     push();
     translate(this.x, this.y);
-
-
     this.drawBody(this.movement)
     this.drawEyes(this.movement)
     this.drawFeet(this.movement)
     this.drawHands(this.movement)
-
-
-
     pop();
   }
 
