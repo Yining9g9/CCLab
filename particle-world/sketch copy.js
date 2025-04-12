@@ -11,49 +11,52 @@ function setup() {
 function draw() {
   background(100, 180, 150);
 
-  let dia = random(3, 5)
-  let freq = frameCount
-
   for (i = 0; i < 30; i++) {
-    let x0 = width - i * 1.5;
+    let x0 = width - i * 2;
     let y0 = 10 + random(-15, 15);
     let xSpeed0 = random(-5, -3);
+    let freq0 = frameCount
+
     let x01 = width * 7 / 8 + i * 0.7;
     let y01 = 70 + random(-10, 10);
+
     let x02 = width - 50 - i * 0.1;
     let y02 = 100 + random(-10, 10);
+
     let x03 = width * 7 / 8 + i * 0.7;
     let y03 = 130 + random(-10, 10);
 
-    particles.push(new Particle(x0, y0, dia, xSpeed0, freq, 8));
-    particles.push(new Particle(x01, y01, dia, xSpeed0, freq, 8));
-    particles.push(new Particle(x02, y02, dia, xSpeed0, freq, 8));
-    particles.push(new Particle(x03, y03, dia, xSpeed0, freq, 8));
-  }
-
-  for (i = 0; i < 20; i++) {
     let x1 = width * 5 / 8 + i * 5;
     let y1 = height / 2 + random(-15, 15);
     let xSpeed1 = random(-7, -5);
+    let freq1 = frameCount
+
     let x11 = width * 4 / 5 + i * 5;
     let y11 = height * 3 / 7 + random(-15, 15);
+
     let x12 = width * 4 / 5 + i * 5;
     let y12 = height * 4 / 7 + random(-15, 15);
 
-    particles.push(new Particle(x1, y1, dia, xSpeed1, freq, 3));
-    particles.push(new Particle(x11, y11, dia, xSpeed1, freq, 3));
-    particles.push(new Particle(x12, y12, dia, xSpeed1, freq, 3));
-  }
-
-  for (i = 0; i < 60; i++) {
-    let x2 = width * 3 / 7 + i * 5;
+    let x2 = width * 3 / 7 + i * 10;
     let y2 = height * 4 / 5 + random(-15, 15);
     let xSpeed2 = random(-10, -7);
+    let freq2 = frameCount
+
     let x21 = width * 7 / 10 + i * 10;
     let y21 = height * 5 / 7 + random(-15, 15);
 
-    particles.push(new Particle(x2, y2, dia, xSpeed2, freq, 3));
-    particles.push(new Particle(x21, y21, dia, xSpeed2, freq, 3));
+    let dia = random(3, 5)
+
+    particles.push(new Particle(x0, y0, dia, xSpeed0, freq0, 8));
+    particles.push(new Particle(x01, y01, dia, xSpeed0, freq0, 8));
+    particles.push(new Particle(x02, y02, dia, xSpeed0, freq0, 8));
+    particles.push(new Particle(x03, y03, dia, xSpeed0, freq0, 8));
+    particles.push(new Particle(x1, y1, dia, xSpeed1, freq1, 3));
+    particles.push(new Particle(x11, y11, dia, xSpeed1, freq1, 3));
+    particles.push(new Particle(x12, y12, dia, xSpeed1, freq1, 3));
+    particles.push(new Particle(x2, y2, dia, xSpeed2, freq2, 3));
+    particles.push(new Particle(x21, y21, dia, xSpeed2, freq2, 3));
+
   }
 
   for (let i = 0; i < particles.length; i++) {
@@ -72,7 +75,7 @@ function draw() {
   }
 
   while (particles.length > 2000) {
-    particles.splice(0, 410);
+    particles.splice(0, 270);
   }
 
   for (i = 0; i < 2; i++) {
