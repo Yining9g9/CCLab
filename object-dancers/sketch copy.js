@@ -19,67 +19,66 @@ class YiningDancer {
   constructor(startX, startY) {
     this.x = startX;
     this.y = startY;
-    this.movement = false
-    this.movement = 0
-    this.movementTarget = 0
+    this.movementState = false;
+    this.movement = 0;
+    this.movementTarget = 0;
   }
   update() {
-    this.updateMovement()
+    this.updateMovement();
   }
   updateMovement() {
-    let remainder = frameCount % 30
+    let remainder = frameCount % 30;
     if (remainder == 0) {
-      this.movement = !this.movement
+      this.movementState = !this.movementState;
     }
-    if (this.movement == true) {
-      this.movementTarget += -15
+    if (this.movementState == true) {
+      this.movementTarget += -1;
     } else {
-      this.movementTarget += 15
+      this.movementTarget += 1;
     }
 
-    this.movement = lerp(this.movement, this.movementTarget, 0.35)
+    this.movement = lerp(this.movement, this.movementTarget, 0.35);
   }
   display() {
-
     push();
     translate(this.x, this.y);
-    this.drawBody(this.movement)
-    this.drawEyes(this.movement)
-    this.drawFeet(this.movement)
-    this.drawHands(this.movement)
+    this.drawBody(this.movement);
+    this.drawEyes(this.movement);
+    this.drawFeet(this.movement);
+    this.drawHands(this.movement);
     pop();
   }
 
   drawBody(body) {
-    noStroke()
-    fill(201, 142, 104)
-    ellipse(body / 2, -60, 60, 70)
-    ellipse(body, 0, 80, 80)
-    ellipse(body / 2, 60, 70, 60)
+    noStroke();
+    fill(201, 142, 104);
+    ellipse(body / 2, -60, 60, 70);
+    ellipse(body, 0, 80, 80);
+    ellipse(body / 2, 60, 70, 60);
   }
 
   drawEyes(body) {
-    let EyeX = sin(frameCount * 0.2) * 5
-    let EyeY = cos(frameCount * 0.2) * 3
-    noStroke()
-    fill(0)
-    ellipse(-5 + EyeX + body / 2, -50 + EyeY, 5, 10)
-    ellipse(5 + EyeX + body / 2, -50 + EyeY, 5, 10)
+    let EyeX = sin(frameCount * 0.2) * 5;
+    let EyeY = cos(frameCount * 0.2) * 3;
+    noStroke();
+    fill(0);
+    ellipse(-5 + EyeX + body / 2, -50 + EyeY, 5, 10);
+    ellipse(5 + EyeX + body / 2, -50 + EyeY, 5, 10);
   }
 
   drawFeet(body) {
-    noStroke()
-    fill(180, 120, 80)
-    ellipse(body - 20, 90, 12, 8)
-    ellipse(body + 20, 90, 12, 8)
+    noStroke();
+    fill(180, 120, 80);
+    ellipse(body - 20, 90, 12, 8);
+    ellipse(body + 20, 90, 12, 8);
   }
 
   drawHands(body) {
-    let bodyX = sin(frameCount * 0.2) * 5
-    let bodyY = cos(frameCount * 0.2) * 3
-    noStroke()
-    fill(180, 120, 80)
-    ellipse(-50 + bodyX + body * 2, -5 + bodyY, 12, 8)
-    ellipse(50 + bodyX + body * 2, bodyY, 12, 8)
+    let bodyX = sin(frameCount * 0.2) * 5;
+    let bodyY = cos(frameCount * 0.2) * 3;
+    noStroke();
+    fill(180, 120, 80);
+    ellipse(-50 + bodyX + body * 2, -5 + bodyY, 12, 8);
+    ellipse(50 + bodyX + body * 2, bodyY, 12, 8);
   }
 }
