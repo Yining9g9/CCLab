@@ -100,8 +100,6 @@ function setup() {
   returnButton = new ReturnButton();
 
   currentMusic = bgMusic;
-  currentMusic.loop();
-  currentMusic.setVolume(0.2);
 
   fruits.push(new Fruit(274, 265, 12));
   fruits.push(new Fruit(241, 209, 15));
@@ -158,56 +156,7 @@ function drawIntroduction() {
 
 }
 
-function mousePressed() {
-  if (showIntroduction) {
-    showIntroduction = false;
-  } else if (allScenesViewed) {
-    if (endingState === 0) {
-      endingState = 1;
-    } else if (endingState === 1) {
-      endingState = 2;
-    }
-  }
-}
-
-function drawScene0() {
-  background(176, 146, 119, 204);
-
-  textAlign(LEFT, TOP);
-  push();
-  imageMode(CENTER);
-  image(bg0, width / 2, (height + 150) / 2, 800, 450);
-  pop();
-
-
-  for (let i = 0; i < particles.length; i++) {
-    let p = particles[i];
-    p.checkMouse();
-    p.update();
-    p.display();
-    p.reappear();
-
-  }
-
-  for (let i = 0; i < petals.length; i++) {
-    let pe = petals[i];
-    pe.update();
-    pe.display();
-  }
-
-  push();
-  fill(176, 146, 119);
-  noStroke();
-  rect(0, 0, width, 150);
-  imageMode(CORNER);
-  image(imgBg, 0, 0, width, 200);
-  imageMode(CENTER);
-  image(imgPs, width / 2, height - 125, 250, 300);
-  pop();
-  imageMode(CENTER);
-}
 function drawMainContent() {
-
   if (selectedScene == 0) {
     drawScene0();
   } else if (selectedScene >= 1 && selectedScene <= 5) {
@@ -282,6 +231,57 @@ function drawMainContent() {
   returnButton.checkMouse();
   returnButton.display();
 
+}
+
+function mousePressed() {
+  if (showIntroduction) {
+    showIntroduction = false;
+    currentMusic.loop();
+    currentMusic.setVolume(0.2);
+  } else if (allScenesViewed) {
+    if (endingState === 0) {
+      endingState = 1;
+    } else if (endingState === 1) {
+      endingState = 2;
+    }
+  }
+}
+
+function drawScene0() {
+  background(176, 146, 119, 204);
+
+  textAlign(LEFT, TOP);
+  push();
+  imageMode(CENTER);
+  image(bg0, width / 2, (height + 150) / 2, 800, 450);
+  pop();
+
+
+  for (let i = 0; i < particles.length; i++) {
+    let p = particles[i];
+    p.checkMouse();
+    p.update();
+    p.display();
+    p.reappear();
+
+  }
+
+  for (let i = 0; i < petals.length; i++) {
+    let pe = petals[i];
+    pe.update();
+    pe.display();
+  }
+
+  push();
+  fill(176, 146, 119);
+  noStroke();
+  rect(0, 0, width, 150);
+  imageMode(CORNER);
+  image(imgBg, 0, 0, width, 200);
+  imageMode(CENTER);
+  image(imgPs, width / 2, height - 125, 250, 300);
+  pop();
+  imageMode(CENTER);
 }
 
 function switchScene1() {
@@ -550,7 +550,7 @@ class Particle {
   // check circular button example and try to add checkMouse() function.
   checkMouse() {
     let distance = dist(this.x, this.y, mouseX, mouseY);
-    if (distance < this.rad && mouseIsPressed == true) {
+    if (distance < this.rad && mouseIsPressed == true && mouseY > 200) {
       selectedScene = this.id;
       this.checked = true;
       this.frozenX = this.x;
