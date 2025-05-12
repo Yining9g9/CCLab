@@ -2,14 +2,18 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background-color: rgba(176, 146, 119);
 }
 
 canvas {
+
+  outline: none;
+  border: none;
   display: block;
 }
 
 .main-wrapper {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 50px 0;
 }
